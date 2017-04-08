@@ -18,8 +18,9 @@
 
 #include <psp2/types.h>
 #include <psp2/display.h>
-#include <psp2/kernel/clib.h>
-
+#include <libk/stdio.h>
+#include <libk/stdarg.h>
+#include <libk/string.h>
 #include "font.h"
 
 unsigned int* vram32;
@@ -59,7 +60,7 @@ void drawCharacter(int character, int x, int y){
 
 
 void drawString(int x, int y, const char *str){
-    for (size_t i = 0; i < sceClibStrnlen(str,512); i++)
+    for (size_t i = 0; i < strlen(str); i++)
         drawCharacter(str[i], x + i * 12, y);
 }
 
@@ -68,7 +69,7 @@ void drawStringF(int x, int y, const char *format, ...){
 	va_list va;
 
 	va_start(va, format);
-	sceClibVsnprintf(str, 512, format, va);
+	vsnprintf(str, 512, format, va);
 	va_end(va);
 
 	drawString(x, y, str);
