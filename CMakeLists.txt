@@ -35,6 +35,7 @@ target_link_libraries(Framecounter
   SceLibKernel_stub
   SceIofilemgr_stub
   SceDisplay_stub
+  SceCtrl_stub
   k
   gcc
   ScePower_stub
